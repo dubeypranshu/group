@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROUP</title>
+    <style>
+        body {
+            background-color: rgba(41, 40, 40, 0.705);
+            color: lime;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        h1 {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.623);
+            padding: 10px 0;
+            margin: 0;
+            z-index: 1000;
+            font-size: 1.5rem;
+        }
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px 20px;
+            box-sizing: border-box;
+        }
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            margin: 20px 0;
+        }
+        .marquee-inner {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        .marquee img {
+            height: 512px;
+            width: 720px;
+            margin: 0 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px lime;
+            object-fit: cover;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        .flipper {
+            perspective: 1000px;
+            display: inline-block;
+            margin: 10px;
+            width: 120px;
+        }
+        .flip-card {
+            width: 100%;
+            height: 150px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .flipper:hover .flip-card, .flipper:focus .flip-card {
+            transform: rotateY(180deg);
+        }
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .front {
+            background: lime;
+        }
+        .front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .back {
+            background: darkgreen;
+            transform: rotateY(180deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 0.8rem;
+        }
+        .more-info {
+            margin-top: 5px;
+            background: black;
+            color: lime;
+            padding: 3px 5px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.7rem;
+        }
+        .info-section1 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            color: lime;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 2000;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .info-section1 video {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .info-section1 p {
+            max-width: 90%;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .info-section1 button {
+            background: lime;
+            color: black;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+        .info-section2 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            color: lime;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 2000;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .info-section2 video {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .info-section2 p {
+            max-width: 90%;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .info-section2 button {
+            background: lime;
+            color: black;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+        .info-section3 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            color: lime;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 2000;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .info-section3 video {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .info-section3 p {
+            max-width: 90%;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .info-section3 button {
+            background: lime;
+            color: black;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+        .info-section4 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            color: lime;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 2000;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .info-section4 video {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .info-section4 p {
+            max-width: 90%;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .info-section4 button {
+            background: lime;
+            color: black;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+        .info-section5 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            color: lime;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 2000;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .info-section5 video {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .info-section5 p {
+            max-width: 90%;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .info-section5 button {
+            background: lime;
+            color: black;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+        .info-section6 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            color: lime;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 2000;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .info-section6 video {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .info-section6 p {
+            max-width: 90%;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .info-section6 button {
+            background: lime;
+            color: black;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+        #members div {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        #about img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 0 0 10px lime;
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .marquee img {
+                height: 300px;
+                width: 180px;
+            }
+            .flipper {
+                width: 180px;
+                margin: 15px;
+            }
+            .flip-card {
+                height: 220px;
+            }
+            .back {
+                font-size: 1rem;
+            }
+            .more-info {
+                font-size: 0.9rem;
+                padding: 5px 10px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .marquee img {
+                height: 450px;
+                width: 260px;
+            }
+            .flipper {
+                width: 260px;
+                margin: 20px;
+            }
+            .flip-card {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Barely Keeping Life!!!</h1>
+    <section id="home">
+        <h2>BKLs'Boyz</h2>
+        <div class="marquee">
+            <div class="marquee-inner">
+                <img src="g.jpg" alt="Member 1">
+                <img src="gg.jpg" alt="Member 2">
+                <img src="ggg.jpg" alt="Member 3">
+                <img src="gggg.jpg" alt="Member 4">
+                <img src="ggggg.jpg" alt="Member 5">
+                <img src="gggggg.jpg" alt="Member 6">
+                <img src="ggggggg.jpg" alt="Member 7">
+                <img src="gggggggg.jpg" alt="Member 9">
+                <img src="ggggggggg.jpg" alt="Member 10">
+                <img src="gggggggggg.jpg" alt="Member 11">
+                <img src="ggggggggggg.jpg" alt="Member 12">
+                <!-- Duplicate images for seamless looping -->
+                <img src="g.jpg" alt="Member 1">
+                <img src="gg.jpg" alt="Member 2">
+                <img src="ggg.jpg" alt="Member 3">
+                <img src="gggg.jpg" alt="Member 4">
+                <img src="ggggg.jpg" alt="Member 5">
+                <img src="gggggg.jpg" alt="Member 6">
+                <img src="ggggggg.jpg" alt="Member 7">
+                <img src="gggggggg.jpg" alt="Member 9">
+                <img src="ggggggggg.jpg" alt="Member 10">
+                <img src="gggggggggg.jpg" alt="Member 11">
+                <img src="ggggggggggg.jpg" alt="Member 12">
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Members</h2>
+        <div>
+            <div class="flipper" tabindex="0">
+                <div class="flip-card">
+                    <div class="front"><img src="malhar.jpg" alt="Malhar"></div>
+                    <div class="back">
+                        <p>Malhar chota bheem in group...</p>
+                        <a href="#" class="more-info" onclick="showInfo1()">More Info</a>
+                    </div>
+                </div>
+            </div>
+            <div class="flipper" tabindex="0">
+                <div class="flip-card">
+                    <div class="front"><img src="pranal.jpg" alt="Pranal"></div>
+                    <div class="back">
+                        <p>Pranal most older person in group...</p>
+                        <a href="#" class="more-info" onclick="showInfo2()">More Info</a>
+                    </div>
+                </div>
+            </div>
+            <div class="flipper" tabindex="0">
+                <div class="flip-card">
+                    <div class="front"><img src="harsh.jpeg" alt="Harsh"></div>
+                    <div class="back">
+                        <p>Hrash nimbu-mirchi in group...</p>
+                        <a href="#" class="more-info" onclick="showInfo3()">More Info</a>
+                    </div>
+                </div>
+            </div>
+            <div class="flipper" tabindex="0">
+                <div class="flip-card">
+                    <div class="front"><img src="me.jpeg" alt="Pranshu"></div>
+                    <div class="back">
+                        <p>Pranshu feminist in group...</p>
+                        <a href="#" class="more-info" onclick="showInfo4()">More Info</a>
+                    </div>
+                </div>
+            </div>
+            <div class="flipper" tabindex="0">
+                <div class="flip-card">
+                    <div class="front"><img src="shivam.jpeg" alt="Shivam"></div>
+                    <div class="back">
+                        <p>Shivam introlawda in group...</p>
+                        <a href="#" class="more-info" onclick="showInfo5()">More Info</a>
+                    </div>
+                </div>
+            </div>
+            <div class="flipper" tabindex="0">
+                <div class="flip-card">
+                    <div class="front"><img src="ayush.jpg" alt="Ayush"></div>
+                    <div class="back">
+                        <p>Ayush smarter gya in group...</p>
+                        <a href="#" class="more-info" onclick="showInfo6()">More Info</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="info-section1" class="info-section1">
+        <video width="320" height="240" controls>
+            <source src="test.mp4" type="video/mp4">
+        </video>
+        <p>Malhar chota pack... bada dhamaka... khuch ata toh nahi h bass koi bole collage na ane ko to direct nahi, or ager koi plane ko canncel bole to jaan per ata h BKL phele apne 75% attendence laga!!!!!</p>
+        <audio controls>
+            <source src="test .m4a" type="audio/mpeg">
+        </audio>
+        <button onclick="hideInfo1()">Close</button>
+    </div>
+
+    <div id="info-section2" class="info-section2">
+        <video width="320" height="240" controls>
+            <source src="VID-20250126-WA0081.mp4" type="video/mp4">
+        </video>
+        <p>Pranal PDF sala .... phele he ek collage ma degree kiya h pher bhi vapas degree lene agya, khuch nahi bhai bass Pedofile h sala apne age se choti ko patane aya h BKL!!!!</p>
+        <audio controls>
+            <source src="test .m4a" type="audio/mpeg">
+        </audio>
+        <button onclick="hideInfo2()">Close</button>
+    </div>
+
+    <div id="info-section3" class="info-section3">
+        <video width="320" height="240" controls>
+            <source src="VID-20250126-WA0081.mp4" type="video/mp4">
+        </video>
+        <p>Harsh .. yah ha to group ko nazar nahi lagti h sorry h per sahi h kala lawde gaand ka, vase kisi bhi project ko diya to pure ekaagrata se kar ta h BKL!!!!</p>
+        <audio controls>
+            <source src="test .m4a" type="audio/mpeg">
+        </audio>
+        <button onclick="hideInfo3()">Close</button>
+    </div>
+
+    <div id="info-section4" class="info-section4">
+        <video width="320" height="240" controls>
+            <source src="VID-20250126-WA0081.mp4" type="video/mp4">
+        </video>
+        <p>Pranshu... me ya website bane wala ma bhi pagal hu khuch kaam nahi h to apne group ka digital world me documentation kar ra hu BKL!!!</p>
+        <audio controls>
+            <source src="test .m4a" type="audio/mpeg">
+        </audio>
+        <button onclick="hideInfo4()">Close</button>
+    </div>
+
+    <div id="info-section5" class="info-section5">
+        <video width="320" height="240" controls>
+            <source src="VID-20250126-WA0081.mp4" type="video/mp4">
+        </video>
+        <p>Shivam .... eske baare me kya bolu etna introvert sala kisi ladki se toh baat nahi kar ta collage me per apne flat me ladkiyo ke sath sota h sala BKL intovert hai !!!!</p>
+        <audio controls>
+            <source src="test .m4a" type="audio/mpeg">
+        </audio>
+        <button onclick="hideInfo5()">Close</button>
+    </div>
+
+    <div id="info-section6" class="info-section6">
+        <video width="320" height="240" controls>
+            <source src="VID-20250126-WA0081.mp4" type="video/mp4">
+        </video>
+        <p>Ayush... English ke chud ke vajah se pagal hora h BKL!!!!</p>
+        <audio controls>
+            <source src="test .m4a" type="audio/mpeg">
+        </audio>
+        <button onclick="hideInfo6()">Close</button>
+    </div>
+
+    <section id="about">
+        <h2>About</h2>
+        <p>The Story of BKL: Barely Keeping Life
+
+            This group started in 2023 at the beginning of college. Initially, there were 10-15 students, and everyone helped each other with notes and assignments. However, as the year progressed, the group took a new turn, and the number of members decreased to 8-9. Over time, more members left, and everyone formed their own separate groups.
+            
+            Now, with the changing times, the group has transformed—its name, members, and purpose have all evolved. The new name is BKL: Barely Keeping Life!!! This group isn’t just about sharing notes anymore; it’s full of backchodi, mast moments, and randirona.
+            
+            It’s a unique group with 6 members, each with their own skills and strengths—qualities that can’t easily be put into words. In the end, I don’t know how long this group will last, but for now, it’s holding on... barely.</p>
+        <img src="gang.jpg" alt="Group Photo">
+    </section>
+
+    <script>
+        // Info section functions
+        function showInfo1() {
+            document.getElementById("info-section1").style.display = "flex";
+        }
+        function hideInfo1() {
+            document.getElementById("info-section1").style.display = "none";
+        }
+        function showInfo2() {
+            document.getElementById("info-section2").style.display = "flex";
+        }
+        function hideInfo2() {
+            document.getElementById("info-section2").style.display = "none";
+        }
+        function showInfo3() {
+            document.getElementById("info-section3").style.display = "flex";
+        }
+        function hideInfo3() {
+            document.getElementById("info-section3").style.display = "none";
+        }
+        function showInfo4() {
+            document.getElementById("info-section4").style.display = "flex";
+        }
+        function hideInfo4() {
+            document.getElementById("info-section4").style.display = "none";
+        }
+        function showInfo5() {
+            document.getElementById("info-section5").style.display = "flex";
+        }
+        function hideInfo5() {
+            document.getElementById("info-section5").style.display = "none";
+        }
+        function showInfo6() {
+            document.getElementById("info-section6").style.display = "flex";
+        }
+        function hideInfo6() {
+            document.getElementById("info-section6").style.display = "none";
+        }
+
+        // Close info sections when clicking outside content
+        document.addEventListener('click', function(event) {
+            const infoSections = document.querySelectorAll('.info-section');
+            infoSections.forEach(section => {
+                if (section.style.display === 'flex' && !section.contains(event.target)) {
+                    section.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
